@@ -49,13 +49,13 @@ export default function Home() {
 
   function calculate(){
     if (operator === '/') {
-      setResultado(num1/resultado)
+      setResultado(Number(num1)/Number(resultado))
     }else if (operator === '-') {
-      setResultado(num1-resultado)
+      setResultado(Number(num1)-Number(resultado))
     }else if (operator === '+') {
       setResultado(Number(num1)+Number(resultado))
     }else if (operator === 'X') {
-      setResultado(num1*resultado)
+      setResultado(Number(num1)*Number(resultado))
     }
     console.log(num1)
     console.log(operator)
@@ -125,7 +125,7 @@ export default function Home() {
             <button className="gray" onClick={inputResultado} id='buttonZero' value={0}>
               0
             </button>
-            <button className="gray" onClick={inputResultado} value={","}>
+            <button className="gray" onClick={inputResultado} value={"."}>
               ,
             </button>
             <button className="pink" onClick={calculate}>
