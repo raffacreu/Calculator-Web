@@ -1,12 +1,14 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
-  //import { resultado } from '../pages/api/scripts'
+  //import {  } from '../pages/api/scripts'
 import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [resultado, setResultado] = useState(0)
+  const [num1, setNum1] = useState(0)
+  const [operator, setOperator] = useState()
   
   function inputResultado(e){
     const input = e.target.value
@@ -22,8 +24,43 @@ export default function Home() {
       }      
   }
 
-  function clearResultado(e){
+  function clearResultado(){
     setResultado(0)
+  }
+
+  function percentageButton() {
+    setResultado( resultado/100 )
+  }
+
+  function changeSign() {
+    if(resultado > 0){
+      return setResultado(-Math.abs(resultado))
+    }else{
+      return setResultado(Math.abs(resultado))
+    }
+  }
+
+  function operatorHundle(e){
+    let operatorInput = e.target.value
+    setOperator(operatorInput)
+    setNum1(resultado)
+    setResultado(0)
+  }
+
+  function calculate(){
+    if (operator === '/') {
+      setResultado(num1/resultado)
+    }else if (operator === '-') {
+      setResultado(num1-resultado)
+    }else if (operator === '+') {
+      setResultado(Number(num1)+Number(resultado))
+    }else if (operator === 'X') {
+      setResultado(num1*resultado)
+    }
+    console.log(num1)
+    console.log(operator)
+    console.log(resultado)
+    console.log(`Calculado com sucesso: ${resultado}`)
   }
 
   return (
@@ -43,10 +80,10 @@ export default function Home() {
 
           <div className='calculator-buttons'>
 
-            <button className='darkGray' onClick={clearResultado} >AC</button>
-            <button className='darkGray' >+/-</button>
-            <button className='darkGray' >%</button>
-            <button className="blue"  value="/">
+            <button onClick={clearResultado}>AC</button>
+            <button onClick={changeSign}>+/-</button>
+            <button onClick={percentageButton}>%</button>
+            <button className="pink" onClick={operatorHundle} value="/">
               /
             </button>
             <button className="gray" onClick={inputResultado} value={7}>
@@ -58,7 +95,7 @@ export default function Home() {
             <button className="gray" onClick={inputResultado} value={9}>
               9
             </button>
-            <button className="blue"  value="X">
+            <button className="pink" onClick={operatorHundle} value="X">
               X
             </button>
             <button className="gray" onClick={inputResultado} value={4}>
@@ -70,7 +107,7 @@ export default function Home() {
             <button className="gray" onClick={inputResultado} value={6}>
               6
             </button>
-            <button className="blue"  value="-">
+            <button className="pink" onClick={operatorHundle} value="-">
               -
             </button>
             <button className="gray" onClick={inputResultado} value={1}>
@@ -82,16 +119,16 @@ export default function Home() {
             <button className="gray" onClick={inputResultado} value={3}>
               3
             </button>
-            <button className="blue" value="+">
+            <button className="pink" onClick={operatorHundle} value="+">
               +
             </button>
             <button className="gray" onClick={inputResultado} id='buttonZero' value={0}>
               0
             </button>
-            <button className="gray" onClick={inputResultado} value={"."}>
+            <button className="gray" onClick={inputResultado} value={","}>
               ,
             </button>
-            <button className="blue" >
+            <button className="pink" onClick={calculate}>
               =
             </button>
           </div>
