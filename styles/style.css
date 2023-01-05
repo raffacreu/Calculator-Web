@@ -16,7 +16,10 @@ body {
 .calculator-container {
     background-color: #2a2c31;
     padding: 24px 12px 12px;
-    border-radius: 10px;
+    border-radius: 20px;
+    width: 25em;
+    height: 33em;
+    align-items: center;
 }
 
 .screen-display {
@@ -32,6 +35,11 @@ body {
     border-radius: 4px;
 }
 
+.calculator-buttons {
+    padding: 10px;
+    margin: 0 5px;
+} 
+
 button {
     width: 3em;
     height: 3em;
@@ -45,10 +53,15 @@ button {
 
 button:hover {
     cursor: pointer;
-    background: #1f409b5d;
+    background: #ffffff52;
 }
 
-.orange {
+.darkGray {
+    background-color: #383838;
+    color: #fff;
+}
+
+.blue {
     background-color: #2346a8;
     color: #fff;
 }
@@ -56,4 +69,9 @@ button:hover {
 .gray {
     background-color: #505050;
     color: #fff;
+}
+
+#buttonZero {
+    width: 6.4em;
+    height: 2.85em;
 }
